@@ -1,0 +1,73 @@
+--[[
+	 __  __              _____   _   _ 
+	|  \/  |     /\     |_   _| | \ | |
+	| \  / |    /  \      | |   |  \| |
+	| |\/| |   / /\ \     | |   | . ` |
+	| |  | |  / ____ \   _| |_  | |\  |
+	|_|  |_| /_/    \_\ |_____| |_| \_|
+--]]
+local Player = game.Players.LocalPlayer
+local Mouse = Player:GetMouse()
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local CoreGuiService = game:GetService("CoreGui")
+local RunService = game:GetService("RunService")
+local TextService = game:GetService("TextService")
+
+local TweenTime = 0.1
+local Level = 1
+
+local GlobalTweenInfo = TweenInfo.new(TweenTime)
+local AlteredTweenInfo = TweenInfo.new(TweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+
+local function Tween(GuiObject, Dictionary)
+	local TweenBase = TweenService:Create(GuiObject, GlobalTweenInfo, Dictionary)
+	TweenBase:Play()
+	return TweenBase
+end
+
+local function GetXY(GuiObject)
+	local X, Y = Mouse.X - GuiObject.AbsolutePosition.X, Mouse.Y - GuiObject.AbsolutePosition.Y
+	local MaxX, MaxY = GuiObject.AbsoluteSize.X, GuiObject.AbsoluteSize.Y
+	X, Y = math.clamp(X, 0, MaxX), math.clamp(Y, 0, MaxY)
+	return X, Y, X/MaxX, Y/MaxY
+end
+
+local UILibrary = {}
+
+function UILibrary.Load(GUITitle)
+
+	local LTO = Instance.new("ScreenGui")
+	LTO.Name = "MainGui"
+	LTO.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	LTO.ResetOnSpawn = false
+	if game.PlaceId == 8204899140 or RunService:IsStudio() then
+		LTO.Parent = game.Players.LocalPlayer.PlayerGui
+	else
+		LTO.Parent = CoreGuiService
+	end
+
+    local Inside = Instance.new("ImageButton")
+	Inside.Name = "Inside"
+	Inside.Parent = LTO
+	Inside.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Inside.BackgroundTransparency = 1
+	Inside.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Inside.Position = UDim2.new(0.701, 0,0.503, 0)
+	Inside.Size = UDim2.new(0.298, 0,0.497, 0)
+	Inside.Image = "rbxassetid://8993107378"
+	
+	    local Inside2 = Instance.new("ImageButton")
+	Inside2.Name = "Inside"
+	Inside2.Parent = LTO
+	Inside2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Inside2.BackgroundTransparency = 1
+	Inside2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Inside2.Position = UDim2.new(0.701, 0,0.503, 0)
+	Inside2.Size = UDim2.new(0.298, 0,0.497, 0)
+	Inside2.Image = "rbxassetid://8993103050"
+    
+
+
+end
+return UILibrary

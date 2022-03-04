@@ -54,7 +54,7 @@ function UILibrary.Load(GUITitle)
 	Drag.Active = true
 	Drag.Parent = LTO
 	Drag.Position = UDim2.new(0.719, 0,0.684, 0)
-	Drag.Size = UDim2.new(0.273, 0,0.039, 0)
+	Drag.Size = UDim2.new(0.199, 0,0.028, 0)
 	Drag.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Drag.BackgroundTransparency = 1
 	Drag.Draggable = true

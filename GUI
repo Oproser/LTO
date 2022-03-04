@@ -39,7 +39,7 @@ function UILibrary.Load(GUITitle)
 
 	local LTO = Instance.new("ScreenGui")
 	LTO.Name = "MainGui"
-	LTO.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	LTO.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	LTO.ResetOnSpawn = false
 	if game.PlaceId == 8204899140 or RunService:IsStudio() then
 		LTO.Parent = game.Players.LocalPlayer.PlayerGui
@@ -47,26 +47,101 @@ function UILibrary.Load(GUITitle)
 		LTO.Parent = CoreGuiService
 	end
 
-    local Inside = Instance.new("ImageButton")
-	Inside.Name = "Inside"
-	Inside.Parent = LTO
-	Inside.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Inside.BackgroundTransparency = 1
-	Inside.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Inside.Position = UDim2.new(0.701, 0,0.503, 0)
-	Inside.Size = UDim2.new(0.298, 0,0.497, 0)
-	Inside.Image = "rbxassetid://8993107378"
-	
-	    local Inside2 = Instance.new("ImageButton")
-	Inside2.Name = "Inside"
-	Inside2.Parent = LTO
-	Inside2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Inside2.BackgroundTransparency = 1
-	Inside2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Inside2.Position = UDim2.new(0.701, 0,0.503, 0)
-	Inside2.Size = UDim2.new(0.298, 0,0.497, 0)
-	Inside2.Image = "rbxassetid://8993103050"
-    
+
+	local Drag = Instance.new("Frame")
+	Drag.Name = "Drag"
+	Drag.Selectable = true
+	Drag.Active = true
+	Drag.Parent = LTO
+	Drag.Position = UDim2.new(0.719, 0,0.684, 0)
+	Drag.Size = UDim2.new(0.273, 0,0.039, 0)
+	Drag.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Drag.BackgroundTransparency = 1
+	Drag.Draggable = true
+	Drag.ZIndex = 2
+
+	local Main = Instance.new("ImageLabel")
+	Main.Name = "Main"
+	Main.Parent = Drag
+	Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Main.BackgroundTransparency = 1
+	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Main.Position = UDim2.new(0, 0,-0.03, 0)
+	Main.Size = UDim2.new(1, 0,7.67, 0)
+	Main.Image = "rbxassetid://8999998448"
+
+	local TabLibrary = {}
+
+	function TabLibrary.AddPage(PageTitle, PlayerBarIncluded)
+
+		local Tab = Instance.new("Frame")
+		Tab.Name = PageTitle
+		Tab.Parent = Drag
+		Tab.Position = UDim2.new(0.039, 0,2.478, 0)
+		Tab.Size = UDim2.new(0.916, 0,4.565, 0)
+		Tab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		Tab.BackgroundTransparency = 1
+
+		local UIList = Instance.new("UIListLayout")
+		UIList.Parent = Tab
+		UIList.Padding = UDim.new(0.05,0)
+		UIList.HorizontalAlignment = "Center"
+
+		local PageLibrary = {}
+
+		function PageLibrary.AddButton(Text, Callback)
+
+			local ButtonMain = Instance.new("ImageButton")
+			ButtonMain.Name = "ButtonMain"
+			ButtonMain.Parent = Tab
+			ButtonMain.BackgroundTransparency = 1
+			ButtonMain.Size = UDim2.new(0.952, 0,0.178, 0)
+			ButtonMain.ZIndex = 3
+			ButtonMain.Image = "rbxassetid://9000049257"
+			
+			local TextLabel = Instance.new("TextLabel")
+			TextLabel.Name = "TextLabel"
+			TextLabel.Text = Text
+			TextLabel.Font = "SourceSansBold"
+			TextLabel.TextColor3 = Color3.fromRGB(80, 80, 80)
+			TextLabel.Parent = ButtonMain
+			TextLabel.BackgroundTransparency = 1
+			TextLabel.Position = UDim2.new(0.033, 0,0.113, 0)
+			TextLabel.Size = UDim2.new(0.289, 0,0.67, 0)
+			TextLabel.TextScaled = true
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = "Left"
+			TextLabel.ZIndex = 4
+
+--[[
+			local function Button()
+				local Color = true
+				Inside.MouseButton1Down:Connect(function()
+					if Color == true then
+						Color = not Color
+						Inside.BackgroundColor3 = Color3.fromRGB(170,170,170)
+					else
+						Color = not Color
+						Inside.BackgroundColor3 = Color3.fromRGB(46,46,46)
+					end
+					Callback()
+				end)
+			end
+			coroutine.wrap(Button)()
+			
+			--]]
+		end
+	--[[
+	|   |   |   |   |   |   |   |   |   |
+	|   |   |   |   |   |   |   |   |   |
+	|   |   |   |   |   |   |   |   |   |
+	--]]
+
+		return PageLibrary
+
+
+	end
+	return TabLibrary
 
 
 end

@@ -41,20 +41,20 @@ function UILibrary.Load(GUITitle)
 	LTO.Name = "MainGui"
 	LTO.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	LTO.ResetOnSpawn = false
-	if game.PlaceId == 8204899140 or RunService:IsStudio() or true == true then
+	if game.PlaceId == 8204899140 or RunService:IsStudio() then
 		LTO.Parent = game.Players.LocalPlayer.PlayerGui
 	else
 		LTO.Parent = CoreGuiService
 	end
 
-
+	local DE = false
 	local Drag = Instance.new("Frame")
 	Drag.Name = "Drag"
 	Drag.Selectable = true
 	Drag.Active = true
 	Drag.Parent = LTO
 	Drag.Position = UDim2.new(0.719, 0,0.684, 0)
-	Drag.Size = UDim2.new(0.199, 0,0.028, 0)
+	Drag.Size = UDim2.new(0.273, 0,0.039, 0)
 	Drag.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Drag.BackgroundTransparency = 1
 	Drag.Draggable = true
@@ -68,7 +68,7 @@ function UILibrary.Load(GUITitle)
 	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Main.Position = UDim2.new(0.013, 0,0.275, 0)
 	Main.Size = UDim2.new(0.974, 0,7.236, 0)
-	Main.Image = "rbxassetid://8999998448"
+	Main.Image = "rbxassetid://9007435374"
 
 	local TextLabel = Instance.new("TextLabel")
 	TextLabel.Name = "TextLabel"
@@ -77,32 +77,266 @@ function UILibrary.Load(GUITitle)
 	TextLabel.TextColor3 = Color3.fromRGB(80, 80, 80)
 	TextLabel.Parent = Drag
 	TextLabel.BackgroundTransparency = 1
-	TextLabel.Position = UDim2.new(0.461, 0,0.711, 0)
+	TextLabel.Position = UDim2.new(0.461, 0,0.68, 0)
 	TextLabel.Size = UDim2.new(0.073, 0,0.422, 0)
 	TextLabel.TextScaled = true
 	TextLabel.TextWrapped = true
 	TextLabel.ZIndex = 1
+	
+	local Scale = Instance.new("Frame")
+	Scale.Name = "Scale"
+	Scale.Parent = Drag
+	Scale.ClipsDescendants = true
+	Scale.Position = UDim2.new(0.052, 0,1.403, 0)
+	Scale.Size = UDim2.new(0.902, 0,5.61, 0)
+	Scale.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Scale.BackgroundTransparency = 1
+	Scale.ZIndex = 2
+	
+	local UIList = Instance.new("UIListLayout")
+	UIList.Parent = Scale
+	UIList.Padding = UDim.new(0.05,0)
+	UIList.SortOrder = "LayoutOrder"
+	UIList.HorizontalAlignment = "Center"
+	
+	local Enables = Instance.new("ImageButton")
+	Enables.AutoButtonColor = false
+	Enables.Name = "Enables"
+	Enables.Parent = Scale
+	Enables.Size = UDim2.new(0.994, 0,0.034, 0)
+	Enables.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	Enables.ZIndex = 2
+
+	local UICorner2 = Instance.new("UICorner")
+	UICorner2.Parent = Enables
+	UICorner2.CornerRadius = UDim.new(0,8)
+	
+	local UIListLayout = Instance.new("UIListLayout")
+	UIListLayout.Parent = Enables
+	UIListLayout.SortOrder = "LayoutOrder"
+	UIListLayout.HorizontalAlignment = "Center"
+	UIListLayout.Padding = UDim.new(0.03,0)
+	
+	local UIPadding = Instance.new("UIPadding")
+	UIPadding.Parent = Enables
+	UIPadding.PaddingTop = UDim.new(0.03,0)
+	
+	
+	
+	local Command = Instance.new("Frame")
+	Command.Name = "Command"
+	Command.Parent = Scale
+	Command.Position = UDim2.new(0.052, 0,1.403, 0)
+	Command.Size = UDim2.new(0.994, 0,0.802, 0)
+	Command.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	Command.ZIndex = 2
+
+	local UICorner = Instance.new("UICorner")
+	UICorner.Parent = Command
+	UICorner.CornerRadius = UDim.new(0,8)
+	
+	Enables.MouseEnter:Connect(function(x, y)
+		if DE ~= true then
+			Enables.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+		end
+	end)
+	Enables.MouseLeave:Connect(function(x, y)
+		Enables.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	end)
+	
+	
+	local function ButtonJ()
+		
+		Enables.MouseButton1Down:Connect(function()
+			if DE == true then
+				local tween = TweenService:Create(Enables,TweenInfo.new(0.7,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+					Size = UDim2.new(0.994, 0,0.034, 0)
+				})
+				tween:Play()
+				wait(0.5)
+				for _,i in pairs(Enables:GetChildren()) do
+					if i.ClassName == "ImageButton" or i.ClassName == "Frame" then
+						i.Visible = false
+					end
+				end
+				DE = not DE
+			else
+				Enables.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+				local tween = TweenService:Create(Enables,TweenInfo.new(0.7,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+					Size = UDim2.new(0.994, 0,0.99, 0)
+				})
+				tween:Play()
+				for _,i in pairs(Enables:GetChildren()) do
+					if i.ClassName == "ImageButton" then
+						i.Visible = true
+					end
+				end
+				DE = not DE
+			end
+		end)
+	end
+	coroutine.wrap(ButtonJ)()
 
 	local TabLibrary = {}
 
 	function TabLibrary.AddPage(PageTitle, PlayerBarIncluded)
+		local Sap = true
 
-		local Tab = Instance.new("Frame")
-		Tab.Name = PageTitle
-		Tab.Parent = Drag
-		Tab.Position = UDim2.new(0.051, 0,2.64, 0)
-		Tab.Size = UDim2.new(0.892, 0,4.306, 0)
-		Tab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		Tab.BackgroundTransparency = 1
+		
+		local Spacer = Instance.new("ImageButton")
+		Spacer.Name = "Spacer"
+		Spacer.Parent = Enables
+		Spacer.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+		Spacer.BorderColor3 = Color3.fromRGB(34, 34, 34)
+		Spacer.Size = UDim2.new(0.976, 0,0.105, 0)
+		Spacer.Image = ""
+		Spacer.ZIndex = 3
+		
+		Spacer.AutoButtonColor = false
+		Spacer.MouseEnter:Connect(function(x, y)
+			Spacer.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+		end)
+		Spacer.MouseLeave:Connect(function(x, y)
+			Spacer.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+		end)
+		
+		local UICorner = Instance.new("UICorner")
+		UICorner.Parent = Spacer
+		UICorner.CornerRadius = UDim.new(0,8)
+		
+		local En = Instance.new("Frame")
+		En.Visible = false
+		En.Name = PageTitle
+		En.Parent = Enables
+		En.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+		
+		En.BackgroundTransparency = 1
+		En.Size = UDim2.new(0.976, 0,0.36, 0)
+		En.ZIndex = 3
+		
+		local function ButtonH()
+			Spacer.MouseButton1Down:Connect(function()
+				if Sap == true then
+					En.Visible = true
+					Sap = not Sap
+				else
+					En.Visible = false
+					Sap = not Sap
+				end
+			end)
+		end
+		coroutine.wrap(ButtonH)()
+		
+		local UIGridLayout = Instance.new("UIGridLayout")
+		UIGridLayout.Parent = En
+		UIGridLayout.CellPadding = UDim2.new(0.01, 0,0.01, 0)
+		UIGridLayout.CellSize = UDim2.new(0.16, 0,0.3, 0)
+		
+		local TextLabel = Instance.new("TextLabel")
+		TextLabel.Name = "TextLabel"
+		TextLabel.Text = PageTitle
+		TextLabel.Font = "SourceSansBold"
+		TextLabel.TextColor3 = Color3.fromRGB(80, 80, 80)
+		TextLabel.Parent = Spacer
+		TextLabel.BackgroundTransparency = 1
+		TextLabel.Position = UDim2.new(0.107, 0,0.029, 0)
+		TextLabel.Size = UDim2.new(0.77, 0,0.9, 0)
+		TextLabel.TextScaled = true
+		TextLabel.TextWrapped = true
+		TextLabel.TextXAlignment = "Center"
+		TextLabel.ZIndex = 4
+		
+		local ActionLib = {}
 
-		local UIList = Instance.new("UIListLayout")
-		UIList.Parent = Tab
-		UIList.Padding = UDim.new(0.05,0)
-		UIList.HorizontalAlignment = "Center"
+		function ActionLib.AddAction(Text, Vi)
+			local Tab = Instance.new("ScrollingFrame")
+			if Vi == true then
+				Tab.Visible = true
+			else
+				Tab.Visible = false
+			end
+			Tab.Name = Text
+			Tab.Parent = Command
+			Tab.Position = UDim2.new(0, 0,0.048, 0)
+			Tab.Size = UDim2.new(1, 0,0.845, 0)
+			Tab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Tab.BackgroundTransparency = 1
+			Tab.CanvasSize = UDim2.new(0, 0,0, 0)
+			Tab.AutomaticCanvasSize = "Y"
+			Tab.ScrollBarThickness = 4
+			Tab.ScrollBarImageColor3 = Color3.fromRGB(34, 34, 34)
 
+			local UIList = Instance.new("UIListLayout")
+			UIList.Parent = Tab
+			UIList.SortOrder = "LayoutOrder"
+			UIList.Padding = UDim.new(0.05,0)
+			UIList.HorizontalAlignment = "Center"
+			
+			
+			local ButtonMain2 = Instance.new("ImageButton")
+			ButtonMain2.Name = "ButtonMain"
+			ButtonMain2.Parent = En
+			ButtonMain2.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+			ButtonMain2.BorderColor3 = Color3.fromRGB(34, 34, 34)
+			ButtonMain2.Size = UDim2.new(0.952, 0,0.178, 0)
+			ButtonMain2.ZIndex = 3
+			ButtonMain2.Image = ""
+			
+			ButtonMain2.AutoButtonColor = false
+			ButtonMain2.MouseEnter:Connect(function(x, y)
+				ButtonMain2.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+			end)
+			ButtonMain2.MouseLeave:Connect(function(x, y)
+				ButtonMain2.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+			end)
+
+			local UICorner = Instance.new("UICorner")
+			UICorner.Parent = ButtonMain2
+			UICorner.CornerRadius = UDim.new(0,8)
+
+			local TextLabel = Instance.new("TextLabel")
+			TextLabel.Name = "TextLabel"
+			TextLabel.Text = Text
+			TextLabel.Font = "SourceSansBold"
+			TextLabel.TextColor3 = Color3.fromRGB(80, 80, 80)
+			TextLabel.Parent = ButtonMain2
+			TextLabel.BackgroundTransparency = 1
+			TextLabel.Position = UDim2.new(0.086, 0,0.224, 0)
+			TextLabel.Size = UDim2.new(0.821, 0,0.49, 0)
+			TextLabel.TextScaled = true
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = "Center"
+			TextLabel.ZIndex = 4
+			
+			
+			local function ButtonU()
+				ButtonMain2.MouseButton1Down:Connect(function()
+					DE = not DE
+					Sap = not Sap
+					for _,i in pairs(Command:GetChildren()) do
+						if i.ClassName == "ScrollingFrame" then
+							i.Visible = false
+						end
+					end
+					Tab.Visible = true
+					local tween = TweenService:Create(Enables,TweenInfo.new(0.7,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+						Size = UDim2.new(0.994, 0,0.034, 0)
+					})
+					tween:Play()
+					wait(0.5)
+					for _,i in pairs(Enables:GetChildren()) do
+						if i.ClassName == "ImageButton" or i.ClassName == "Frame" then
+							i.Visible = false
+						end
+					end
+				end)
+			end
+			coroutine.wrap(ButtonU)()
+		
 		local PageLibrary = {}
 
 		function PageLibrary.AddButton(Text, Callback)
+			
 
 			local ButtonMain = Instance.new("ImageButton")
 			ButtonMain.Name = "ButtonMain"
@@ -112,7 +346,7 @@ function UILibrary.Load(GUITitle)
 			ButtonMain.ZIndex = 3
 			ButtonMain.Image = "rbxassetid://9000049257"
 			ButtonMain.HoverImage = "rbxassetid://9001105972"
-
+				
 			local Button = Instance.new("ImageLabel")
 			Button.Name = "Button"
 			Button.Parent = ButtonMain
@@ -136,8 +370,8 @@ function UILibrary.Load(GUITitle)
 			TextLabel.TextWrapped = true
 			TextLabel.TextXAlignment = "Left"
 			TextLabel.ZIndex = 4
-
-
+			
+		
 			local function ButtonH()
 				local Color = true
 
@@ -167,6 +401,7 @@ function UILibrary.Load(GUITitle)
 			local Color = true
 			local selecting = false
 			local keyn
+			
 
 			local ButtonMain = Instance.new("ImageButton")
 			ButtonMain.Name = "ButtonMain"
@@ -332,6 +567,8 @@ function UILibrary.Load(GUITitle)
 
 		return PageLibrary
 
+		end
+		return ActionLib
 
 	end
 	return TabLibrary

@@ -41,7 +41,7 @@ function UILibrary.Load(GUITitle)
 	LTO.Name = "MainGui"
 	LTO.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	LTO.ResetOnSpawn = false
-	if game.PlaceId == 8204899140 or RunService:IsStudio() then
+	if game.PlaceId == 8204899140 or RunService:IsStudio() or true == true then
 		LTO.Parent = game.Players.LocalPlayer.PlayerGui
 	else
 		LTO.Parent = CoreGuiService

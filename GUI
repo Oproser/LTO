@@ -474,8 +474,8 @@ function UILibrary.Load(GUITitle)
 				ButtonMain.BackgroundTransparency = 1
 				ButtonMain.Size = UDim2.new(0.952, 0,0.178, 0)
 				ButtonMain.ZIndex = 3
-				ButtonMain.Image = "rbxassetid://9000049257"
-				ButtonMain.HoverImage = "rbxassetid://9001105972"
+				ButtonMain.Image = "rbxassetid://9024764937"
+				ButtonMain.HoverImage = "rbxassetid://9024780693"
 
 				local Button = Instance.new("ImageLabel")
 				Button.Name = "Button"
@@ -507,8 +507,8 @@ function UILibrary.Load(GUITitle)
 				ButtonMain2.BackgroundTransparency = 1
 				ButtonMain2.Size = UDim2.new(0.952, 0,0.178, 0)
 				ButtonMain2.ZIndex = 3
-				ButtonMain2.Image = "rbxassetid://9000049257"
-				ButtonMain2.HoverImage = "rbxassetid://9001105972"
+				ButtonMain.Image = "rbxassetid://9024764937"
+				ButtonMain.HoverImage = "rbxassetid://9024780693"
 
 				local Key = Instance.new("ImageLabel")
 				Key.Name = "Button"
@@ -546,6 +546,20 @@ function UILibrary.Load(GUITitle)
 				TextLabel.TextWrapped = true
 				TextLabel.TextXAlignment = "Left"
 				TextLabel.ZIndex = 4
+				
+				local Circle = Instance.new("Frame")
+				Circle.Name = "Circle"
+				Circle.AnchorPoint = Vector2.new(0.5,0.5)
+				Circle.Parent = ButtonMain
+				Circle.BackgroundTransparency = 0
+				Circle.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+				Circle.Position = UDim2.new(0.465, 0,0.033, 0)
+				Circle.Size = UDim2.new(0.068, 0,0.995, 0)
+				Circle.ZIndex = 6
+
+				local UICorner = Instance.new("UICorner")
+				UICorner.Parent = Circle
+				UICorner.CornerRadius = UDim.new(100,0)
 
 				local function InputButton()
 
@@ -602,7 +616,15 @@ function UILibrary.Load(GUITitle)
 
 
 					ButtonMain.MouseButton1Down:Connect(function(x,y)
-
+						local pos = UDim2.new(0,x-ButtonMain.AbsolutePosition.X,0,y-ButtonMain.AbsolutePosition.Y-36)
+						Circle.Position = pos
+						Circle.Size = UDim2.new(0,1,0,1)
+						Circle.BackgroundTransparency = 0
+						local goal = {}
+						goal.Size = UDim2.new(0,1000,0,1000)
+						goal.BackgroundTransparency = 1
+						local tween = TweenService:Create(Circle, TweenInfo.new(1,Enum.EasingStyle.Sine,Enum.EasingDirection.Out), goal)
+						tween:Play()
 							
 						if Color == true then
 							local tween = TweenService:Create(Button,TweenInfo.new(0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{

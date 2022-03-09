@@ -115,11 +115,9 @@ function UILibrary.Load(GUITitle)
 	Enables.Parent = Scale
 	Enables.Size = UDim2.new(0.994, 0,0.034, 0)
 	Enables.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	Enables.BorderColor3 = Color3.fromRGB(15, 15, 15)
 	Enables.ZIndex = 2
 
-	local UICorner2 = Instance.new("UICorner")
-	UICorner2.Parent = Enables
-	UICorner2.CornerRadius = UDim.new(0,8)
 
 	local UIListLayout = Instance.new("UIListLayout")
 	UIListLayout.Parent = Enables

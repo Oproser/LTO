@@ -589,11 +589,20 @@ function UILibrary.Load(GUITitle)
 				TextLabel.TextWrapped = true
 				TextLabel.TextXAlignment = "Left"
 				TextLabel.ZIndex = 4
+				
+				local Test = Instance.new("Frame")
+				Test.Name = "Test"
+				Test.Parent = ButtonMain
+				Test.ClipsDescendants = true
+				Test.BackgroundTransparency = 1
+				Test.Position = UDim2.new(0, 0,0, 0)
+				Test.Size = UDim2.new(1, 0,1, 0)
+				Test.ZIndex = 6
 
 				local Circle = Instance.new("Frame")
 				Circle.Name = "Circle"
 				Circle.AnchorPoint = Vector2.new(0.5,0.5)
-				Circle.Parent = ButtonMain
+				Circle.Parent = Test
 				Circle.BackgroundTransparency = 0
 				Circle.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
 				Circle.Position = UDim2.new(0.465, 0,0.033, 0)

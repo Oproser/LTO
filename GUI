@@ -66,9 +66,19 @@ function UILibrary.Load(GUITitle)
 	Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Main.BackgroundTransparency = 1
 	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Main.Position = UDim2.new(0.013, 0,0.275, 0)
-	Main.Size = UDim2.new(0.974, 0,7.236, 0)
-	Main.Image = "rbxassetid://9007435374"
+	Main.Position = UDim2.new(0.013, 0,0.499, 0)
+	Main.Size = UDim2.new(0.974, 0,6.871, 0)
+	Main.Image = "rbxassetid://9024939205"
+
+	local Shadow = Instance.new("ImageLabel")
+	Shadow.Name = "Shadow"
+	Shadow.Parent = Main
+	Shadow.BackgroundTransparency = 1
+	Shadow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Shadow.Position = UDim2.new(-0.024, 0,-0.038, 0)
+	Shadow.Size = UDim2.new(1.048, 0,1.091, 0)
+	Shadow.Image = "rbxassetid://9024962205"
+	Shadow.ZIndex = 0
 
 	local TextLabel = Instance.new("TextLabel")
 	TextLabel.Name = "TextLabel"
@@ -129,22 +139,28 @@ function UILibrary.Load(GUITitle)
 	Command.Position = UDim2.new(0.052, 0,1.403, 0)
 	Command.Size = UDim2.new(0.994, 0,0.802, 0)
 	Command.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+	Command.BorderColor3 = Color3.fromRGB(12, 12, 12)
 	Command.ZIndex = 2
-	
 
 
-	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = Command
-	UICorner.CornerRadius = UDim.new(0,8)
-	
-	local TextBlock = Instance.new("Frame")
+	local TextBlock = Instance.new("ImageLabel")
 	TextBlock.Name = "TextBlock"
 	TextBlock.Parent = Command
 	TextBlock.Position = UDim2.new(0.364, 0,-0.069, 0)
 	TextBlock.Size = UDim2.new(0.257, 0,0.141, 0)
-	TextBlock.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-	TextBlock.ZIndex = 2
-	
+	TextBlock.ZIndex = 5
+	TextBlock.BackgroundTransparency = 1
+	TextBlock.Image = "rbxassetid://9024848401"
+
+	local Shadow = Instance.new("ImageLabel")
+	Shadow.Name = "Shadow"
+	Shadow.Parent = TextBlock
+	Shadow.BackgroundTransparency = 1
+	Shadow.Position = UDim2.new(-0.075, 0,0, 0)
+	Shadow.Size = UDim2.new(1.149, 0,1.241, 0)
+	Shadow.Image = "rbxassetid://9025025053"
+	Shadow.ZIndex = 3
+
 	local TextLabelB = Instance.new("TextLabel")
 	TextLabelB.Name = "TextLabel"
 	TextLabelB.Text = "---"
@@ -157,11 +173,7 @@ function UILibrary.Load(GUITitle)
 	TextLabelB.TextScaled = true
 	TextLabelB.TextWrapped = true
 	TextLabelB.TextXAlignment = "Center"
-	TextLabelB.ZIndex = 4
-	
-	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = TextBlock
-	UICorner.CornerRadius = UDim.new(0,8)
+	TextLabelB.ZIndex = 6
 
 	Enables.MouseEnter:Connect(function(x, y)
 		if DE ~= true then
@@ -234,7 +246,7 @@ function UILibrary.Load(GUITitle)
 		UICorner.CornerRadius = UDim.new(0,8)
 
 		local En = Instance.new("Frame")
-		
+
 		En.Name = PageTitle
 		En.Parent = Enables
 		En.Visible = false
@@ -305,8 +317,6 @@ function UILibrary.Load(GUITitle)
 
 			local ButtonMain2 = Instance.new("ImageButton")
 			ButtonMain2.Name = "ButtonMain"
-
-			
 			ButtonMain2.Parent = En
 			ButtonMain2.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
 			ButtonMain2.BorderColor3 = Color3.fromRGB(34, 34, 34)
@@ -343,12 +353,12 @@ function UILibrary.Load(GUITitle)
 
 			local function ButtonU()
 				ButtonMain2.MouseButton1Down:Connect(function()
-					
-					
-					
+
+
+
 					DE = not DE
 					Sap = not Sap
-					
+
 					TextLabelB.Text = Text
 					for _,i in pairs(Command:GetChildren()) do
 						if i.ClassName == "ScrollingFrame" then
@@ -376,7 +386,7 @@ function UILibrary.Load(GUITitle)
 
 
 				local ButtonMain = Instance.new("ImageButton")
-				ButtonMain.ClipsDescendants = true
+				ButtonMain.ClipsDescendants = false
 				ButtonMain.Name = "ButtonMain"
 				ButtonMain.Parent = Tab
 				ButtonMain.BackgroundTransparency = 1
@@ -384,6 +394,24 @@ function UILibrary.Load(GUITitle)
 				ButtonMain.ZIndex = 3
 				ButtonMain.Image = "rbxassetid://9024764937"
 				ButtonMain.HoverImage = "rbxassetid://9024780693"
+
+				local Shadow = Instance.new("ImageLabel")
+				Shadow.Name = "Shadow"
+				Shadow.Parent = ButtonMain
+				Shadow.BackgroundTransparency = 1
+				Shadow.Position = UDim2.new(-0.056, 0,0, 0)
+				Shadow.Size = UDim2.new(1.103, 0,1.241, 0)
+				Shadow.Image = "rbxassetid://9025025053"
+				Shadow.ZIndex = 2
+
+				local Test = Instance.new("Frame")
+				Test.Name = "Test"
+				Test.Parent = ButtonMain
+				Test.ClipsDescendants = true
+				Test.BackgroundTransparency = 1
+				Test.Position = UDim2.new(0, 0,0, 0)
+				Test.Size = UDim2.new(1, 0,1, 0)
+				Test.ZIndex = 6
 
 				local Button = Instance.new("ImageLabel")
 				Button.Name = "Button"
@@ -408,28 +436,25 @@ function UILibrary.Load(GUITitle)
 				TextLabel.TextWrapped = true
 				TextLabel.TextXAlignment = "Left"
 				TextLabel.ZIndex = 4
-				
-				
+
+
 				local Circle = Instance.new("Frame")
 				Circle.Name = "Circle"
 				Circle.Visible = false
 				Circle.AnchorPoint = Vector2.new(0.5,0.5)
-				Circle.Parent = ButtonMain
+				Circle.Parent = Test
 				Circle.BackgroundTransparency = 0
 				Circle.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
 				Circle.Position = UDim2.new(0.465, 0,0.033, 0)
 				Circle.Size = UDim2.new(0.068, 0,0.995, 0)
 				Circle.ZIndex = 6
-				
+
 				local UICorner = Instance.new("UICorner")
 				UICorner.Parent = Circle
 				UICorner.CornerRadius = UDim.new(100,0)
 
 				local function ButtonH()
 					local Color = true
-					
-
-
 					ButtonMain.MouseButton1Down:Connect(function(x,y)
 						Circle.Visible = true
 						local pos = UDim2.new(0,x-ButtonMain.AbsolutePosition.X,0,y-ButtonMain.AbsolutePosition.Y-36)
@@ -441,7 +466,7 @@ function UILibrary.Load(GUITitle)
 						goal.BackgroundTransparency = 1
 						local tween = TweenService:Create(Circle, TweenInfo.new(1,Enum.EasingStyle.Sine,Enum.EasingDirection.Out), goal)
 						tween:Play()
-						
+
 						if Color == true then
 							local tween = TweenService:Create(Button,TweenInfo.new(0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
 								ImageColor3 = Color3.fromRGB(47, 121, 84)
@@ -460,9 +485,6 @@ function UILibrary.Load(GUITitle)
 				end
 				coroutine.wrap(ButtonH)()
 			end
-
-
-
 			function PageLibrary.AddKeybindButton(Text, Callback)
 				local Color = true
 				local selecting = false
@@ -470,14 +492,23 @@ function UILibrary.Load(GUITitle)
 
 
 				local ButtonMain = Instance.new("ImageButton")
+				ButtonMain.ClipsDescendants = false
 				ButtonMain.Name = "ButtonMain"
-				ButtonMain.ClipsDescendants = true
 				ButtonMain.Parent = Tab
 				ButtonMain.BackgroundTransparency = 1
 				ButtonMain.Size = UDim2.new(0.952, 0,0.178, 0)
 				ButtonMain.ZIndex = 3
 				ButtonMain.Image = "rbxassetid://9024764937"
 				ButtonMain.HoverImage = "rbxassetid://9024780693"
+
+				local Shadow = Instance.new("ImageLabel")
+				Shadow.Name = "Shadow"
+				Shadow.Parent = ButtonMain
+				Shadow.BackgroundTransparency = 1
+				Shadow.Position = UDim2.new(-0.056, 0,0, 0)
+				Shadow.Size = UDim2.new(1.103, 0,1.241, 0)
+				Shadow.Image = "rbxassetid://9025025053"
+				Shadow.ZIndex = 2
 
 				local Button = Instance.new("ImageLabel")
 				Button.Name = "Button"
@@ -504,6 +535,7 @@ function UILibrary.Load(GUITitle)
 				TextLabel.ZIndex = 4
 
 				local ButtonMain2 = Instance.new("ImageButton")
+				ButtonMain2.ClipsDescendants = false
 				ButtonMain2.Name = "ButtonMain"
 				ButtonMain2.Parent = Tab
 				ButtonMain2.BackgroundTransparency = 1
@@ -511,6 +543,15 @@ function UILibrary.Load(GUITitle)
 				ButtonMain2.ZIndex = 3
 				ButtonMain2.Image = "rbxassetid://9024764937"
 				ButtonMain2.HoverImage = "rbxassetid://9024780693"
+
+				local Shadow = Instance.new("ImageLabel")
+				Shadow.Name = "Shadow"
+				Shadow.Parent = ButtonMain2
+				Shadow.BackgroundTransparency = 1
+				Shadow.Position = UDim2.new(-0.056, 0,0, 0)
+				Shadow.Size = UDim2.new(1.103, 0,1.241, 0)
+				Shadow.Image = "rbxassetid://9025025053"
+				Shadow.ZIndex = 2
 
 				local Key = Instance.new("ImageLabel")
 				Key.Name = "Button"
@@ -548,7 +589,7 @@ function UILibrary.Load(GUITitle)
 				TextLabel.TextWrapped = true
 				TextLabel.TextXAlignment = "Left"
 				TextLabel.ZIndex = 4
-				
+
 				local Circle = Instance.new("Frame")
 				Circle.Name = "Circle"
 				Circle.AnchorPoint = Vector2.new(0.5,0.5)
@@ -627,7 +668,7 @@ function UILibrary.Load(GUITitle)
 						goal.BackgroundTransparency = 1
 						local tween = TweenService:Create(Circle, TweenInfo.new(1,Enum.EasingStyle.Sine,Enum.EasingDirection.Out), goal)
 						tween:Play()
-							
+
 						if Color == true then
 							local tween = TweenService:Create(Button,TweenInfo.new(0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
 								ImageColor3 = Color3.fromRGB(47, 121, 84)

@@ -38,7 +38,7 @@ local UILibrary = {}
 function UILibrary.Load(GUITitle)
 
 	local LTO = Instance.new("ScreenGui")
-	LTO.Name = "MainGui"
+	LTO.Name = "Main"
 	LTO.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	LTO.ResetOnSpawn = false
 	if game.PlaceId == 8204899140 or RunService:IsStudio() or true == true then
